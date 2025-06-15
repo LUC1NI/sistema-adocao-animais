@@ -1,24 +1,39 @@
-<?php
-require_once '../Config/banco.php';
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <h1>Cadastro de Usuário</h1>
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome  = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-
-    $q = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
-    if ($banco->query($q)) {
-        echo "Usuário cadastrado com sucesso! <a href='Views/usuarios/login.php'>Ir para login</a>";
-    } else {
-        echo "Erro: " . $banco->error;
+    <?php
+    session_start();
+    if (isset($_SESSION['cadastro_erro'])) {
+        echo "<p style='color:red;'>".$_SESSION['cadastro_erro']."</p>";
+        unset($_SESSION['cadastro_erro']);
     }
-}
-?>
 
-<h2>Cadastro de Usuário</h2>
-<form method="POST">
-    Nome: <input type="text" name="nome" required><br><br>
-    Email: <input type="email" name="email" required><br><br>
-    Senha: <input type="password" name="senha" required><br><br>
-    <button type="submit">Cadastrar</button>
-</form>
+    if (isset($_SESSION['cadastro_ok'])) {
+        echo "<p style='color:green;'>".$_SESSION['cadastro_ok']."</p>";
+        unset($_SESSION['cadastro_ok']);
+    }
+    ?>
+
+    <form action="processa_cadastro.php" method="post">
+        <label>Nome:</label><br>
+        <input type="text" name="nome" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Senha:</label><br>
+        <input type="password" name="senha" required><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <br>
+    <a href="usuarios/login.php">Já tem conta? Fazer login</a>
+</body>
+</html>
