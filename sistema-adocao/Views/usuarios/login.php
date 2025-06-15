@@ -19,14 +19,15 @@ session_start();
     ?>
 
     <form action="valida_login.php" method="post">
-        <label>Usuário:</label><br>
-        <input type="text" name="usuario" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
 
         <label>Senha:</label><br>
         <input type="password" name="senha" required><br><br>
 
         <button type="submit">Entrar</button>
     </form>
+
 
     <br>
     <a href="../cadastro.php">Ainda não tem conta? Cadastre-se</a>

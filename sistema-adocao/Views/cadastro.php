@@ -1,5 +1,5 @@
 <?php
-require_once '../../Config/banco.php';
+require_once '../Config/banco.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome  = $_POST['nome'];
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $q = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
     if ($banco->query($q)) {
-        echo "Usuário cadastrado com sucesso! <a href='login.php'>Ir para login</a>";
+        echo "Usuário cadastrado com sucesso! <a href='Views/usuarios/login.php'>Ir para login</a>";
     } else {
         echo "Erro: " . $banco->error;
     }

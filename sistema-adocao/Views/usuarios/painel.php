@@ -16,7 +16,7 @@ if (!isset($_SESSION['usuario'])) {
 <body>
     <h1>Bem-vindo, <?php echo $_SESSION['usuario']; ?>!</h1>
 
-    <p>Aqui é o painel do usuário logado.</p>
+    <p>Você está logado no sistema.</p>
 
     <a href="logout.php">Sair</a>
 </body>
