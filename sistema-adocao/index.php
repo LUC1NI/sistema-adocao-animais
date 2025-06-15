@@ -35,9 +35,9 @@
     <p>Encontre seu novo melhor amigo! Veja os animais disponíveis ou entre para cadastrar e adotar.</p>
 
     <div class="menu">
-        <a href="animais.php">Ver Animais</a>
-        <a href="login.php">Login</a>
-        <a href="cadastrar.php">Cadastrar-se</a>
+        <a href="Views/animais.php">Ver Animais</a><br>
+        <a href="Views/usuarios/login.php">Login</a><br>
+        <a href="Views/cadastro.php">Cadastrar-se</a>
     </div>
 </body>
 </html>

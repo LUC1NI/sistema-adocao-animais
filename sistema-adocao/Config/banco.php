@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$dbname = "adocao";
+$dbname = "sistema_adocao";
 
 $banco = new mysqli($host, $user, $pass, $dbname);
 if ($banco->connect_errno) {
