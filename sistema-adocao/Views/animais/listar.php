@@ -22,6 +22,10 @@ require_once '../../Config/banco.php';
             echo "<strong>Espécie:</strong> ".$animal['especie']."<br>";
             echo "<strong>Idade:</strong> ".$animal['idade']." anos<br>";
             echo "<strong>Descrição:</strong> ".$animal['descricao']."<br>";
+
+            // Aqui o link para a página de detalhes
+            echo "<a href='detalhes.php?id=".$animal['id']."'>Ver Detalhes</a>";
+
             echo "</div>";
         }
     } else {
