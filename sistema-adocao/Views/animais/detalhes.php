@@ -46,6 +46,13 @@ if (isset($_GET['id'])) {
         <a href="excluir.php?id=<?php echo $animal['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este animal?');">Excluir</a>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['usuario']) && (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'admin')): ?>
+        <form action="solicitar_adocao.php" method="get" style="margin-top: 20px;">
+            <input type="hidden" name="id" value="<?php echo $animal['id']; ?>">
+            <button type="submit">Solicitar Adoção</button>
+        </form>
+    <?php endif; ?>
+
     <br>
     <a href="../../index.php">Voltar para a página inicial</a> |
     <a href="listar.php">Voltar para a lista de animais</a>
