@@ -29,42 +29,6 @@ if ($result && $result->num_rows > 0) {
     echo "Usuário não encontrado.";
     exit;
 }
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Formulário de Solicitação de Adoção</title>
-</head>
-<body>
-<?php
-if (!isset($_SESSION['usuario'])) {
-    header('Location: ../usuarios/login.php');
-    exit;
-}
-
-$id_animal = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-if ($id_animal <= 0) {
-    echo "ID do animal não informado.";
-    exit;
-}
-
-$email_usuario = $_SESSION['usuario'];
-
-$q = "SELECT id FROM usuarios WHERE nome = ?";
-$stmt = $banco->prepare($q);
-$stmt->bind_param("s", $email_usuario);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result && $result->num_rows > 0) {
-    $usuario = $result->fetch_assoc();
-    $id_usuario = $usuario['id'];
-} else {
-    echo "Usuário não encontrado.";
-    exit;
-}
 
 $q_check = "SELECT * FROM adocoes WHERE id_usuario = ? AND id_animal = ?";
 $stmt_check = $banco->prepare($q_check);
@@ -91,7 +55,7 @@ if (empty($message) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $data_pedido = date('Y-m-d H:i:s');
-$status = 'pendente';
+    $status = 'pendente';
 
     $q_insert = "INSERT INTO adocoes (id_usuario, id_animal, data_pedido, status, respostas_formulario) VALUES (?, ?, ?, ?, ?)";
     $stmt_insert = $banco->prepare($q_insert);
@@ -107,6 +71,13 @@ $status = 'pendente';
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Solicitação de Adoção</title>
+</head>
+<body>
 <?php if (!empty($message)): ?>
     <p><?php echo $message; ?></p>
 <?php else: ?>
@@ -125,6 +96,7 @@ $status = 'pendente';
     </form>
     <br>
     <a href="detalhes.php?id=<?php echo $id_animal; ?>">Voltar para os detalhes do animal</a>
+    <a href="../usuarios/acompanhamento.php">Minhas Adoções</a>
 <?php endif; ?>
 </body>
 </html>
