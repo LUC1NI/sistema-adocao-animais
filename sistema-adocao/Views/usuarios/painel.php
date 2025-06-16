@@ -22,6 +22,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['tipo_usuario'] !== 'admin') {
     <ul>
         <li><a href="../animais/cadastrar.php">Cadastrar Novo Animal</a></li>
         <li><a href="../animais/listar_admin.php">Gerenciar Animais (Listar, Editar, Excluir)</a></li>
+        <li><a href="solicitacoes.php">Solicitações</a></li>
         <li><a href="logout.php">Sair</a></li>
     </ul>
 

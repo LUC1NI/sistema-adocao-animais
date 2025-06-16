@@ -55,16 +55,20 @@ require_once 'Config/banco.php';
     <div class="menu">
         <?php if (isset($_SESSION['usuario'])): ?>
             <span>Olá, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</span>
-            <a href="Views/usuarios/acompanhamento.php">Minhas Adoções</a>
             <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin'): ?>
+                <a href="Views/usuarios/solicitacoes.php">Solicitações</a>
                 <a href="Views/usuarios/painel.php">Painel Admin</a>
+            <?php else: ?>
+                <a href="Views/usuarios/acompanhamento.php">Minhas Adoções</a>
             <?php endif; ?>
+
             <a href="Views/usuarios/logout.php">Logout</a>
         <?php else: ?>
             <a href="Views/usuarios/login.php">Login</a>
             <a href="Views/cadastro.php">Cadastrar-se</a>
         <?php endif; ?>
     </div>
+
 
     <h2>Animais Disponíveis para Adoção</h2>
 
