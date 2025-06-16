@@ -9,7 +9,6 @@ if (!isset($_SESSION['usuario'])) {
 
 $email_usuario = $_SESSION['usuario'];
 
-// Get user id
 $q = "SELECT id FROM usuarios WHERE nome = ?";
 $stmt = $banco->prepare($q);
 $stmt->bind_param("s", $email_usuario);
@@ -24,7 +23,6 @@ if ($result && $result->num_rows > 0) {
     exit;
 }
 
-// Get adoption requests for user
 $q_adocoes = "SELECT a.id, a.data_pedido, a.status, an.nome AS animal_nome, an.foto AS animal_foto FROM adocoes a JOIN animais an ON a.id_animal = an.id WHERE a.id_usuario = ? ORDER BY a.data_pedido DESC";
 $stmt_adocoes = $banco->prepare($q_adocoes);
 $stmt_adocoes->bind_param("i", $id_usuario);

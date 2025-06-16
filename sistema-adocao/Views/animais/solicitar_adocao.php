@@ -79,7 +79,7 @@ if ($result_check && $result_check->num_rows > 0) {
     $message .= '<a href="detalhes.php?id=' . $id_animal . '">Voltar para os detalhes do animal</a>';
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (empty($message) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $pergunta1 = $_POST['pergunta1'] ?? '';
     $pergunta2 = $_POST['pergunta2'] ?? '';
     $pergunta3 = $_POST['pergunta3'] ?? '';
@@ -107,6 +107,9 @@ $status = 'pendente';
 }
 ?>
 
+<?php if (!empty($message)): ?>
+    <p><?php echo $message; ?></p>
+<?php else: ?>
     <h1>Formulário de Solicitação de Adoção</h1>
     <form method="post" action="">
         <label for="pergunta1">Por que deseja adotar este animal?</label><br>
@@ -122,5 +125,6 @@ $status = 'pendente';
     </form>
     <br>
     <a href="detalhes.php?id=<?php echo $id_animal; ?>">Voltar para os detalhes do animal</a>
+<?php endif; ?>
 </body>
 </html>

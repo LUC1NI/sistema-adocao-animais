@@ -31,7 +31,6 @@ echo "<h1>Solicitações de Adoção</h1>";
         }
     }
 
-    // Fetch all adoption requests with user and animal info
     $q_adocoes = "SELECT a.id, a.data_pedido, a.status, a.mensagem, u.nome AS usuario_nome, an.nome AS animal_nome
                   FROM adocoes a
                   JOIN usuarios u ON a.id_usuario = u.id
