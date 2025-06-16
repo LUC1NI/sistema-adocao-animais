@@ -55,6 +55,7 @@ require_once 'Config/banco.php';
     <div class="menu">
         <?php if (isset($_SESSION['usuario'])): ?>
             <span>Olá, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</span>
+            <a href="Views/usuarios/acompanhamento.php">Minhas Adoções</a>
             <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin'): ?>
                 <a href="Views/usuarios/painel.php">Painel Admin</a>
             <?php endif; ?>

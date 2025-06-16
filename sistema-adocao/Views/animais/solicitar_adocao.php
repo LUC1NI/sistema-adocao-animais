@@ -3,7 +3,6 @@ session_start();
 require_once '../../Config/banco.php';
 
 if (!isset($_SESSION['usuario'])) {
-    // User not logged in, redirect to login
     header('Location: ../usuarios/login.php');
     exit;
 }
@@ -15,10 +14,8 @@ if ($id_animal <= 0) {
     exit;
 }
 
-// Get user id from session (assuming you store user id in session, if not, fetch from DB)
 $email_usuario = $_SESSION['usuario'];
 
-// Fetch user id from usuarios table
 $q = "SELECT id FROM usuarios WHERE nome = ?";
 $stmt = $banco->prepare($q);
 $stmt->bind_param("s", $email_usuario);
@@ -34,19 +31,16 @@ if ($result && $result->num_rows > 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process form submission
     $pergunta1 = $_POST['pergunta1'] ?? '';
     $pergunta2 = $_POST['pergunta2'] ?? '';
     $pergunta3 = $_POST['pergunta3'] ?? '';
 
-    // Serialize responses as JSON
     $respostas = json_encode([
         'Por que deseja adotar este animal?' => $pergunta1,
         'Você tem outros animais de estimação?' => $pergunta2,
         'Você tem experiência em cuidar de animais?' => $pergunta3,
     ]);
 
-    // Check if adoption request already exists for this user and animal
     $q_check = "SELECT * FROM adocoes WHERE id_usuario = ? AND id_animal = ? AND status = 'pending'";
     $stmt_check = $banco->prepare($q_check);
     $stmt_check->bind_param("ii", $id_usuario, $id_animal);
@@ -58,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Insert new adoption request with form responses
     $data_pedido = date('Y-m-d H:i:s');
     $status = 'pending';
 
