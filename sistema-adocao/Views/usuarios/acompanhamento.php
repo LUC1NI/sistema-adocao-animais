@@ -69,6 +69,7 @@ $result_adocoes = $stmt_adocoes->get_result();
                     <th>Animal</th>
                     <th>Data do Pedido</th>
                     <th>Status</th>
+                    <th>Mensagem do Admin</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,6 +79,7 @@ $result_adocoes = $stmt_adocoes->get_result();
                         <td><?php echo htmlspecialchars($adocao['animal_nome']); ?></td>
                         <td><?php echo htmlspecialchars($adocao['data_pedido']); ?></td>
                         <td><?php echo htmlspecialchars($adocao['status']); ?></td>
+                        <td><?php echo !empty($adocao['mensagem']) ? nl2br(htmlspecialchars($adocao['mensagem'])) : 'Nenhuma mensagem'; ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
