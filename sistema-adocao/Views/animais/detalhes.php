@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../Config/banco.php';
 
 if (isset($_GET['id'])) {
@@ -39,6 +40,11 @@ if (isset($_GET['id'])) {
     <p><strong>Espécie:</strong> <?php echo $animal['especie']; ?></p>
     <p><strong>Idade:</strong> <?php echo $animal['idade']; ?> anos</p>
     <p><strong>Descrição:</strong> <?php echo $animal['descricao']; ?></p>
+
+    <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin'): ?>
+        <a href="editar.php?id=<?php echo $animal['id']; ?>">Editar</a> |
+        <a href="excluir.php?id=<?php echo $animal['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este animal?');">Excluir</a>
+    <?php endif; ?>
 
     <br>
     <a href="../../index.php">Voltar para a página inicial</a> |
