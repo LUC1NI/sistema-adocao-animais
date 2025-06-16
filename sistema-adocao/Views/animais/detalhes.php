@@ -54,7 +54,6 @@ if (isset($_GET['id'])) {
     <?php endif; ?>
 
     <br>
-    <a href="../../index.php">Voltar para a página inicial</a> |
-    <a href="listar.php">Voltar para a lista de animais</a>
+    <a href="../../index.php">Voltar para a página inicial</a> 
 </body>
 </html>
