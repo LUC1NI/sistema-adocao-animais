@@ -25,10 +25,13 @@ if (!isset($_SESSION['usuario'])) {
         while ($animal = $resultado->fetch_assoc()) {
             echo "<div style='border:1px solid #ccc; padding:10px; margin-bottom:10px;'>";
             echo "<h2>".$animal['nome']."</h2>";
+            if (!empty($animal['foto'])) {
+                echo "<img src='../../uploads/animais/".$animal['foto']."' alt='Foto do animal' width='200'><br>";
+            }
             echo "<strong>Espécie:</strong> ".$animal['especie']."<br>";
             echo "<strong>Idade:</strong> ".$animal['idade']." anos<br>";
             echo "<strong>Descrição:</strong> ".$animal['descricao']."<br><br>";
-
+            echo "<a href='detalhes.php?id=".$animal['id']."'>Ver Detalhes</a>";
             echo "<a href='editar.php?id=".$animal['id']."'>Editar</a> | ";
             echo "<a href='excluir.php?id=".$animal['id']."' onclick=\"return confirm('Tem certeza que deseja excluir este animal?');\">Excluir</a>";
 
