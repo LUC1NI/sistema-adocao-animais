@@ -31,6 +31,11 @@ if (isset($_GET['id'])) {
     <h1>Detalhes do Animal</h1>
 
     <h2><?php echo $animal['nome']; ?></h2>
+    <?php 
+        if (!empty($animal['foto'])) {
+                echo "<img src='../../uploads/animais/".$animal['foto']."' alt='Foto do animal' width='200'><br>";
+        }
+    ?>
     <p><strong>Espécie:</strong> <?php echo $animal['especie']; ?></p>
     <p><strong>Idade:</strong> <?php echo $animal['idade']; ?> anos</p>
     <p><strong>Descrição:</strong> <?php echo $animal['descricao']; ?></p>

@@ -11,10 +11,11 @@ $resultado = $banco->query($q);
 if ($resultado && $resultado->num_rows > 0) {
     $usuario = $resultado->fetch_assoc();
 
-    if (password_verify($senha, $usuario['senha'])) {
-        $_SESSION['usuario'] = $usuario['nome'];
-        header('Location: painel.php');
-        exit;
+if (password_verify($senha, $usuario['senha'])) {
+    $_SESSION['usuario'] = $usuario['nome'];
+    $_SESSION['tipo_usuario'] = $usuario['tipo_usuario']; 
+    header('Location: ../../index.php');
+    exit;
     } else {
         $_SESSION['erro_login'] = "Email ou senha inválidos!";
         header('Location: login.php');
