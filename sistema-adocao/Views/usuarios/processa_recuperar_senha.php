@@ -2,6 +2,12 @@
 session_start();
 require_once '../../Config/banco.php';
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    $_SESSION['erro_recuperar'] = "Erro de segurança: token CSRF inválido.";
+    header('Location: recuperar_senha.php');
+    exit;
+}
+
 function validarCPF($cpf) {
     $cpf = preg_replace('/[^0-9]/', '', $cpf);
     if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {

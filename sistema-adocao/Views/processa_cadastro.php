@@ -2,6 +2,12 @@
 session_start();
 require_once '../Config/banco.php';
 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    $_SESSION['cadastro_erro'] = "Erro de segurança: token CSRF inválido.";
+    header('Location: cadastro.php');
+    exit;
+}
+
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];

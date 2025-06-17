@@ -20,24 +20,31 @@
     }
     ?>
 
-    <form action="processa_cadastro.php" method="post">
-        <label>Nome:</label><br>
-        <input type="text" name="nome" required><br><br>
+<?php
+session_start();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+<form action="processa_cadastro.php" method="post">
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <label>Nome:</label><br>
+    <input type="text" name="nome" required><br><br>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
 
-        <label>Senha:</label><br>
-        <input type="password" name="senha" required><br><br>
+    <label>Senha:</label><br>
+    <input type="password" name="senha" required><br><br>
 
-        <label>CPF:</label><br>
-        <input type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required><br><br>
+    <label>CPF:</label><br>
+    <input type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required><br><br>
 
-        <label>Data de Nascimento:</label><br>
-        <input type="date" name="data_nascimento" required><br><br>
+    <label>Data de Nascimento:</label><br>
+    <input type="date" name="data_nascimento" required><br><br>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+    <button type="submit">Cadastrar</button>
+</form>
 
     <br>
     <a href="usuarios/login.php">Já tem conta? Fazer login</a>
