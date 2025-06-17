@@ -48,26 +48,13 @@ require_once 'Config/banco.php';
         }
     </style>
 </head>
+<header>
+    <?php include 'Views/navigation.php'; ?>
+</header>
 <body>
     <h1>🐾 Bem-vindo ao Sistema de Adoção de Animais 🐾</h1>
     <p>Encontre seu novo melhor amigo! Veja os animais disponíveis ou entre para cadastrar e adotar.</p>
 
-    <div class="menu">
-        <?php if (isset($_SESSION['usuario'])): ?>
-            <span>Olá, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!</span>
-            <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin'): ?>
-                <a href="Views/usuarios/solicitacoes.php">Solicitações</a>
-                <a href="Views/usuarios/painel.php">Painel Admin</a>
-            <?php else: ?>
-                <a href="Views/usuarios/acompanhamento.php">Minhas Adoções</a>
-            <?php endif; ?>
-
-            <a href="Views/usuarios/logout.php">Logout</a>
-        <?php else: ?>
-            <a href="Views/usuarios/login.php">Login</a>
-            <a href="Views/cadastro.php">Cadastrar-se</a>
-        <?php endif; ?>
-    </div>
 
 
     <h2>Animais Disponíveis para Adoção</h2>
@@ -94,5 +81,6 @@ require_once 'Config/banco.php';
     }
     ?>
 
+    <?php include 'Views/footer.php'; ?>
 </body>
 </html>
