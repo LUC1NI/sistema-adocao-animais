@@ -11,6 +11,6 @@
         <a href="Views/usuarios/logout.php">Logout</a>
     <?php else: ?>
         <a href="Views/usuarios/login.php">Login</a>
-        <a href="cadastro.php">Cadastrar-se</a>
+        <a href="Views/usuarios/cadastro.php">Cadastrar-se</a>
     <?php endif; ?>
 </div>
