@@ -28,8 +28,9 @@ session_start();
         <button type="submit">Entrar</button>
     </form>
 
-
     <br>
+    <a href="recuperar_senha.php">Recuperar senha</a><br><br>
+
     <a href="../cadastro.php">Ainda não tem conta? Cadastre-se</a>
 </body>
 </html>

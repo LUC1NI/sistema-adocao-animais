@@ -30,6 +30,12 @@
         <label>Senha:</label><br>
         <input type="password" name="senha" required><br><br>
 
+        <label>CPF:</label><br>
+        <input type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required><br><br>
+
+        <label>Data de Nascimento:</label><br>
+        <input type="date" name="data_nascimento" required><br><br>
+
         <button type="submit">Cadastrar</button>
     </form>
 
