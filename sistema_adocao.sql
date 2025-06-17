@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 17/06/2025 às 04:27
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Host: 127.0.0.1:3307
+-- Tempo de geração: 17-Jun-2025 às 23:18
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `adocoes`
+-- Estrutura da tabela `adocoes`
 --
 
 CREATE TABLE `adocoes` (
@@ -35,10 +35,10 @@ CREATE TABLE `adocoes` (
   `status` enum('pendente','aprovado','recusado') DEFAULT 'pendente',
   `respostas_formulario` text DEFAULT NULL,
   `mensagem` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `adocoes`
+-- Extraindo dados da tabela `adocoes`
 --
 
 INSERT INTO `adocoes` (`id`, `id_usuario`, `id_animal`, `data_pedido`, `status`, `respostas_formulario`, `mensagem`) VALUES
@@ -47,32 +47,34 @@ INSERT INTO `adocoes` (`id`, `id_usuario`, `id_animal`, `data_pedido`, `status`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `animais`
+-- Estrutura da tabela `animais`
 --
 
 CREATE TABLE `animais` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `especie` varchar(50) DEFAULT NULL,
-  `raca` varchar(100) DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
   `descricao` text DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `animais`
+-- Extraindo dados da tabela `animais`
 --
 
-INSERT INTO `animais` (`id`, `nome`, `especie`, `raca`, `idade`, `descricao`, `foto`) VALUES
-(2, 'lulu', 'Lulu da Pomerânia', NULL, 2, 'Lulu-da-pomerânia, também conhecida como spitz-alemão-anão, é a menor variedade da raça spitz alemão. É nativa da Pomerânia, região que engloba parte da Alemanha e Polônia na Europa Central', '68501f1e61dc1.jpg'),
-(3, 'Felix', 'Persa', NULL, 2, 'Persa é uma raça de gato doméstico originária do Irã, antiga Pérsia. É conhecido por sua aparência chamativa, de muita pelagem e focinho achatado.', '6850432ed9cd3.jpg'),
-(4, 'Bob', 'Golden retriever', NULL, 2, 'O golden retriever é uma raça canina do tipo retriever originária da Grã-bretanha, e foi desenvolvida para a caça de aves aquáticas.', '6850cf62364f1.jpeg');
+INSERT INTO `animais` (`id`, `nome`, `especie`, `idade`, `descricao`, `foto`) VALUES
+(2, 'lulu', 'Lulu da Pomerânia', 2, 'Lulu-da-pomerânia, também conhecida como spitz-alemão-anão, é a menor variedade da raça spitz alemão. É nativa da Pomerânia, região que engloba parte da Alemanha e Polônia na Europa Central', '68501f1e61dc1.jpg'),
+(3, 'Felix', 'Persa', 2, 'Persa é uma raça de gato doméstico originária do Irã, antiga Pérsia. É conhecido por sua aparência chamativa, de muita pelagem e focinho achatado.', '6850432ed9cd3.jpg'),
+(4, 'Bob', 'Golden retriever', 2, 'O golden retriever é uma raça canina do tipo retriever originária da Grã-bretanha, e foi desenvolvida para a caça de aves aquáticas.', '6850cf62364f1.jpeg'),
+(5, 'spyke', 'Buldogue francês', 3, 'O buldogue francês é uma raça de cão de companhia, do tipo buldogue, de pequeno porte, oriunda da França.', '6851d97e4e133.jpeg'),
+(6, 'jerry', 'Ragdoll', 1, 'Ragdoll, comumente chamados Filhos de Josephine ou Filhos da Ann, é uma raça de gato desenvolvida nos Estados Unidos, mas especificamente no estado da Califórnia, durante a década de 1960. Com seu porte gigante, temperamento dependente, dócil e uma pelagem cheia, é um animal de características marcantes.', '6851d9eb51f98.jpeg'),
+(7, 'big', 'Maine Coon', 4, 'Maine Coon é uma raça de gato originária do nordeste dos Estados Unidos. É considerada a raça de pelo mais antiga, além de ser a maior de todas as raças de gato do mundo. Foi reconhecida como raça oficial no estado norte-americano do Maine, onde era famoso pela sua capacidade de caçar ratos e tolerar climas rigorosos.', '6851dac43f5c0.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -83,10 +85,10 @@ CREATE TABLE `usuarios` (
   `data_nascimento` date DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `tipo_usuario` enum('adotante','admin') DEFAULT 'adotante'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `data_nascimento`, `senha`, `tipo_usuario`) VALUES
@@ -98,7 +100,7 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `data_nascimento`, `senha`
 --
 
 --
--- Índices de tabela `adocoes`
+-- Índices para tabela `adocoes`
 --
 ALTER TABLE `adocoes`
   ADD PRIMARY KEY (`id`),
@@ -106,20 +108,20 @@ ALTER TABLE `adocoes`
   ADD KEY `id_animal` (`id_animal`);
 
 --
--- Índices de tabela `animais`
+-- Índices para tabela `animais`
 --
 ALTER TABLE `animais`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -132,7 +134,7 @@ ALTER TABLE `adocoes`
 -- AUTO_INCREMENT de tabela `animais`
 --
 ALTER TABLE `animais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
@@ -141,11 +143,11 @@ ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `adocoes`
+-- Limitadores para a tabela `adocoes`
 --
 ALTER TABLE `adocoes`
   ADD CONSTRAINT `adocoes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
