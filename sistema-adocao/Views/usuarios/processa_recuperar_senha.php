@@ -9,24 +9,18 @@ if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_tok
 }
 
 function validarCPF($cpf) {
-    $cpf = preg_replace('/[^0-9]/', '', $cpf);
-    if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
+    $cpf = preg_replace('/\D/', '', $cpf);
+    if (strlen($cpf) != 11) {
         return false;
     }
-    
-    for ($t = 9; $t < 11; $t++) {
-        $d = 0;
-        for ($c = 0; $c < $t; $c++) {
-            $d += $cpf[$c] * (($t + 1) - $c);
-        }
-        $d = ($d * 10) % 11;
-        $d = ($d == 10) ? 0 : $d;
-        if ($cpf[$c] != $d) {
-            return false;
-        }
+
+    if ($cpf == str_repeat($cpf[0], 11)) {
+        return false;
     }
+
     return true;
 }
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
